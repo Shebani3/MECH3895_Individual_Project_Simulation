@@ -1,0 +1,238 @@
+<mujoco model="WhiskerSegmented">
+<option timestep = "0.0002"></option>
+  <include file="Backdrop.xml"/>
+
+
+    
+
+  <option gravity="0 0 0"/>
+
+  <extension>
+    <plugin plugin="mujoco.elasticity.cable"/>
+  </extension>
+
+  <statistic center="0 0 0.2" extent="1"/>
+
+  <compiler autolimits="true"/>
+
+  <visual>
+    <global elevation="0"/>
+  </visual>
+
+
+
+  <default>
+    <geom solref="0.01 1" solimp=".95 .99 .0001"/>
+  </default>
+  
+
+
+
+  <worldbody>
+
+<body name = "WhiskerBody_Nylon" pos = " 0.0065 -0.0 0.1" >
+  <!--<geom type="sphere" size="0.002" rgba="0 0.2 0.1 0.5" mass="5.27e-9" pos=" 0.2015 0.0 0" euler="0 90 0" />-->
+
+    <body name ="Seg0" pos = " 0 0 0">
+   <geom name="Seg0_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.0 0 0" euler="0 270 0" />
+    <!--<site name="segmented_whis_base_site" type="capsule" size="0.01 0.029" rgba="0 1 1 0" euler = "0 90 0" pos = "0.008 0.0 0"/>-->
+    <site name="segmented_whis_base_site_nylon" type="capsule" size="0.01 0.01" rgba="0 1 1 0.4" euler = "0 90 0" pos = "0.0135 0.0 0"/>
+   <joint name="hinge0" type="hinge" axis="0 0 1" pos="-0.005 0 0" range="0 360" stiffness="0.888" damping="0.01" springref="0"/>
+
+    <body name ="Seg1" pos = " 0 0 0">
+    <joint name="hinge1" type="hinge" axis="0 0 1" pos="0.0065 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0" />
+    <geom name="Seg1_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.013 0 0" euler="0 270 0" />
+    
+    <body name ="Seg2" pos = " 0 0 0">
+    <joint name="hinge2" type="hinge" axis="0 0 1" pos="0.0195 0 0" range="-90 90 " stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg2_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.026 0 0" euler="0 270 0" />
+    
+    <body name ="Seg3" pos = " 0 0 0">
+    <joint name="hinge3" type="hinge" axis="0 0 1" pos="0.0325 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0" />
+    <geom name="Seg3_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.039 0 0" euler="0 270 0" />
+
+    <body name ="Seg4" pos = " 0 0 0">
+    <joint name="hinge4" type="hinge" axis="0 0 1" pos="0.0455 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg4_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.052 0 0" euler="0 270 0" />
+
+    <body name ="Seg5" pos = " 0 0 0">
+    <joint name="hinge5" type="hinge" axis="0 0 1" pos="0.0585 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0" />
+    <geom name="Seg5_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.065 0 0" euler="0 270 0" />
+
+    <body name ="Seg6" pos = " 0 0 0">
+    <joint name="hinge6" type="hinge" axis="0 0 1" pos="0.0715 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg6_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.078 0 0" euler="0 270 0" />
+
+    <body name ="Seg7" pos = " 0 0 0">
+    <joint name="hinge7" type="hinge" axis="0 0 1" pos="0.0845 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg7_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.091 0 0" euler="0 270 0" />
+
+    <body name ="Seg8" pos = " 0 0 0">
+    <joint name="hinge8" type="hinge" axis="0 0 1" pos="0.0975 0 0" range="-90 90" stiffness="0.888" damping="0.01"  springref="0"/>
+    <geom name="Seg8_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.104 0 0" euler="0 270 0" />
+
+    <body name ="Seg9" pos = " 0 0 0">
+    <joint name="hinge9" type="hinge" axis="0 0 1" pos="0.1105 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg9_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.117 0 0" euler="0 270 0"/>
+
+   <body name ="Seg10" pos = " 0 0 0">
+    <joint name="hinge10" type="hinge" axis="0 0 1" pos="0.1235 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0" />
+    <geom name="Seg10_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.13 0 0" euler="0 270 0" />
+
+   <body name ="Seg11" pos = " 0 0 0">
+    <joint name="hinge11" type="hinge" axis="0 0 1" pos="0.1365 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg11_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.143 0 0" euler="0 270 0" />
+
+   <body name ="Seg12" pos = " 0 0 0">
+    <joint name="hinge12" type="hinge" axis="0 0 1" pos="0.1495 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg12_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.156 0 0" euler="0 270 0" />
+
+   <body name ="Seg13" pos = " 0 0 0">
+    <joint name="hinge13" type="hinge" axis="0 0 1" pos="0.1625 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg13_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.169 0 0" euler="0 270 0" />
+
+    <body name ="Seg14" pos = " 0 0 0">
+    <joint name="hinge14" type="hinge" axis="0 0 1" pos="0.1755 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg14_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.182 0 0" euler="0 270 0" />
+
+    <body name ="Seg15" pos = " 0 0 0">
+    <joint name="hinge15" type="hinge" axis="0 0 1" pos="0.1885 0 0" range="-90 90" stiffness="0.888" damping="0.01" springref="0"/>
+    <geom name="Seg15_geom" type="capsule" size="0.0015 0.005" rgba="0.8 0.2 0.1 1" mass="1e-4" pos=" 0.195 0 0" euler="0 270 0" />
+
+
+    </body>
+    </body>
+    </body>
+    </body>
+    </body>
+    </body>
+    </body>
+
+    </body>
+    </body>
+    </body>
+    </body>
+    </body>
+    </body>
+    </body>
+    </body>
+    </body>
+    </body> 
+
+
+
+
+
+
+
+
+
+
+    
+    <body name = "WhiskerBody_Al" pos = " 0.0065 -0.0 0.2" >
+      <!--<geom type="sphere" size="0.002" rgba="0 0.2 0.1 0.5" mass="5.27e-9" pos=" 0.2015 0.0 0" euler="0 90 0" />-->
+    
+        <body name ="Seg0_Al" pos = " 0 0 0">
+       <geom name="Seg0_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.0 0 0" euler="0 270 0" />
+        <!--<site name="segmented_whis_base_site" type="capsule" size="0.01 0.029" rgba="0 1 1 0" euler = "0 90 0" pos = "0.008 0.0 0"/>-->
+        <site name="segmented_whis_base_site_Al" type="capsule" size="0.01 0.01" rgba="0 1 1 0.4" euler = "0 90 0" pos = "0.0135 0.0 0"/>
+       <joint name="hinge0_Al" type="hinge" axis="0 0 1" pos="-0.005 0 0" range="0 360" stiffness="0.1015" damping="0.01" springref="0"/>
+    
+        <body name ="Seg1_Al" pos = " 0 0 0">
+        <joint name="hinge1_Al" type="hinge" axis="0 0 1" pos="0.0065 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0" />
+        <geom name="Seg1_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.013 0 0" euler="0 270 0" />
+        
+        <body name ="Seg2_Al" pos = " 0 0 0">
+        <joint name="hinge2_Al" type="hinge" axis="0 0 1" pos="0.0195 0 0" range="-90 90 " stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg2_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.026 0 0" euler="0 270 0" />
+        
+        <body name ="Seg3_Al" pos = " 0 0 0">
+        <joint name="hinge3_Al" type="hinge" axis="0 0 1" pos="0.0325 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0" />
+        <geom name="Seg3_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.039 0 0" euler="0 270 0" />
+    
+        <body name ="Seg4_Al" pos = " 0 0 0">
+        <joint name="hinge4_Al" type="hinge" axis="0 0 1" pos="0.0455 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg4_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.052 0 0" euler="0 270 0" />
+    
+        <body name ="Seg5_Al" pos = " 0 0 0">
+        <joint name="hinge5_Al" type="hinge" axis="0 0 1" pos="0.0585 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0" />
+        <geom name="Seg5_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.065 0 0" euler="0 270 0" />
+    
+        <body name ="Seg6_Al" pos = " 0 0 0">
+        <joint name="hinge6_Al" type="hinge" axis="0 0 1" pos="0.0715 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg6_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.078 0 0" euler="0 270 0" />
+    
+        <body name ="Seg7_Al" pos = " 0 0 0">
+        <joint name="hinge7_Al" type="hinge" axis="0 0 1" pos="0.0845 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg7_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.091 0 0" euler="0 270 0" />
+    
+        <body name ="Seg8_Al" pos = " 0 0 0">
+        <joint name="hinge8_Al" type="hinge" axis="0 0 1" pos="0.0975 0 0" range="-90 90" stiffness="0.1015" damping="0.01"  springref="0"/>
+        <geom name="Seg8_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.104 0 0" euler="0 270 0" />
+    
+        <body name ="Seg9_Al" pos = " 0 0 0">
+        <joint name="hinge9_Al" type="hinge" axis="0 0 1" pos="0.1105 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg9_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.117 0 0" euler="0 270 0"/>
+    
+       <body name ="Seg10_Al" pos = " 0 0 0">
+        <joint name="hinge10_Al" type="hinge" axis="0 0 1" pos="0.1235 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0" />
+        <geom name="Seg10_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.13 0 0" euler="0 270 0" />
+    
+       <body name ="Seg11_Al" pos = " 0 0 0">
+        <joint name="hinge11_Al" type="hinge" axis="0 0 1" pos="0.1365 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg11_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.143 0 0" euler="0 270 0" />
+    
+       <body name ="Seg12_Al" pos = " 0 0 0">
+        <joint name="hinge12_Al" type="hinge" axis="0 0 1" pos="0.1495 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg12_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.156 0 0" euler="0 270 0" />
+    
+       <body name ="Seg13_Al" pos = " 0 0 0">
+        <joint name="hinge13_Al" type="hinge" axis="0 0 1" pos="0.1625 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg13_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.169 0 0" euler="0 270 0" />
+    
+        <body name ="Seg14_Al" pos = " 0 0 0">
+        <joint name="hinge14_Al" type="hinge" axis="0 0 1" pos="0.1755 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg14_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.182 0 0" euler="0 270 0" />
+    
+        <body name ="Seg15_Al" pos = " 0 0 0">
+        <joint name="hinge15_Al" type="hinge" axis="0 0 1" pos="0.1885 0 0" range="-90 90" stiffness="0.1015" damping="0.01" springref="0"/>
+        <geom name="Seg15_geom_Al" type="capsule" size="0.0004 0.0061" rgba="0.8 0.2 0.1 1" mass="1.8e-5" pos=" 0.195 0 0" euler="0 270 0" />
+
+    
+        </body>
+        </body>
+        </body>
+        </body>
+        </body>
+        </body>
+        </body>
+    
+        </body>
+        </body>
+        </body>
+        </body>
+        </body>
+        </body>
+        </body>
+        </body>
+        </body>
+        </body> 
+       
+
+
+    </worldbody>
+
+  <sensor>
+        
+        <!--<jointpos name="angle_sensor_0" joint="hinge0" />-->
+        
+        <force name = "manual_base_force_sensor_nylon" site="segmented_whis_base_site_nylon" />
+        <torque name ="manual_base_torque_sensor_nylon" site="segmented_whis_base_site_nylon" />
+
+        <force name = "manual_base_force_sensor_Al" site="segmented_whis_base_site_Al" />
+        <torque name ="manual_base_torque_sensor_Al" site="segmented_whis_base_site_Al" />
+
+       <!--  <jointpos name="angle_sensor_1" joint="hinge1" />-->
+    </sensor>
+
+</mujoco>

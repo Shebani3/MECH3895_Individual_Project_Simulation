@@ -1,0 +1,444 @@
+<mujoco model="All_Whiskers">
+  <compiler angle="radian" meshdir="asset/" texturedir="asset/"/>
+
+  <option timestep="0.0002" gravity="0 0 0"/>
+
+  <visual>
+    <global elevation="0"/>
+    <map stiffness="700" fogstart="1" fogend="15" zfar="40" haze="1" shadowscale="0.5"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+  </visual>
+
+  <statistic meansize="0.05" extent="1" center="0 0 0.2"/>
+
+  <default>
+    <geom solref="0.0005 0.009" solimp="0.95 0.99 0.0001" margin="0.0003"/>
+  </default>
+
+  <extension>
+    <plugin plugin="mujoco.elasticity.cable">
+      <instance name="compositeCompositeNylon">
+        <config key="twist" value="1e10"/>
+        <config key="bend" value="3.1e9"/>
+        <config key="vmax" value="0.1"/>
+      </instance>
+      <instance name="compositeComposite_Aluminium">
+        <config key="twist" value="1e10"/>
+        <config key="bend" value="70e9"/>
+        <config key="vmax" value="0.1"/>
+      </instance>
+    </plugin>
+  </extension>
+
+  <custom>
+    <text name="composite_CompositeNylon" data="rope_CompositeNylon"/>
+    <text name="composite_Composite_Aluminium" data="rope_Composite_Aluminium"/>
+  </custom>
+
+
+  <worldbody>
+    <light diffuse=".4 .2 .4" specular="0.2 0.1 0.1" pos="0 0 2.0" dir="0 0 -1" castshadow="false"/>
+    <light directional="true" diffuse=".8 .8 .8" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
+   <geom name="ground" size="0 0 1" type="plane" condim="1" pos="0 0 0" quat="1 0 0 0" rgba = "0.1 0.2 0.2 1"/>
+    <body name="WhiskerBody_Nylon" pos="0.0065 0 0.1">
+      <body name="Seg0">
+        <joint name="hinge0" pos="-0.005 0 0" axis="0 0 1" stiffness="0.888" damping="0.03" range="0 0.349"/>
+        <geom name="Seg0_geom" size="0.0015 0.005" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+       <site name="segmented_whis_base_site_nylon" pos="0.0135 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.01" type="capsule" rgba="0 1 1 0.4"/>
+        <body name="Seg1">
+          <joint name="hinge1" pos="0.0065 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+          <geom name="Seg1_geom" size="0.0015 0.005" pos="0.013 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+          <body name="Seg2">
+            <joint name="hinge2" pos="0.0195 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+            <geom name="Seg2_geom" size="0.0015 0.005" pos="0.026 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+            <body name="Seg3">
+              <joint name="hinge3" pos="0.0325 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+              <geom name="Seg3_geom" size="0.0015 0.005" pos="0.039 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+          
+              <body name="Seg4">
+                <joint name="hinge4" pos="0.0455 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                <geom name="Seg4_geom" size="0.0015 0.005" pos="0.052 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                <body name="Seg5">
+                  <joint name="hinge5" pos="0.0585 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                  <geom name="Seg5_geom" size="0.0015 0.005" pos="0.065 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                  <body name="Seg6">
+                    <joint name="hinge6" pos="0.0715 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                    <geom name="Seg6_geom" size="0.0015 0.005" pos="0.078 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                    <body name="Seg7">
+                      <joint name="hinge7" pos="0.0845 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                      <geom name="Seg7_geom" size="0.0015 0.005" pos="0.091 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                      <body name="Seg8">
+                        <joint name="hinge8" pos="0.0975 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                        <geom name="Seg8_geom" size="0.0015 0.005" pos="0.104 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                        <body name="Seg9">
+                          <joint name="hinge9" pos="0.1105 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                          <geom name="Seg9_geom" size="0.0015 0.005" pos="0.117 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                          <body name="Seg10">
+                            <joint name="hinge10" pos="0.1235 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                            <geom name="Seg10_geom" size="0.0015 0.005" pos="0.13 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                            <body name="Seg11">
+                              <joint name="hinge11" pos="0.1365 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                              <geom name="Seg11_geom" size="0.0015 0.005" pos="0.143 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                              <body name="Seg12">
+                                <joint name="hinge12" pos="0.1495 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                <geom name="Seg12_geom" size="0.0015 0.005" pos="0.156 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                <body name="Seg13">
+                                  <joint name="hinge13" pos="0.1625 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                  <geom name="Seg13_geom" size="0.0015 0.005" pos="0.169 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                  <body name="Seg14">
+                                    <joint name="hinge14" pos="0.1755 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                    <geom name="Seg14_geom" size="0.0015 0.005" pos="0.182 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                    <body name="Seg15">
+                                      <joint name="hinge15" pos="0.1885 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                      <geom name="Seg15_geom" size="0.0015 0.005" pos="0.195 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="WhiskerBody_Al" pos="0.0065 0 0.2">
+      
+      <body name="Seg0_Al">
+        <joint name="hinge0_Al" pos="-0.005 0 0" axis="0 0 1" stiffness="0.1015" range="0 0.349" damping="0.004"/>
+        <geom name="Seg0_geom_Al" size="0.0004 0.0061" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+        <site name="segmented_whis_base_site_Al" pos="0.0135 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.01" type="capsule" rgba="0 1 1 0.4"/>
+        <body name="Seg1_Al">
+          <joint name="hinge1_Al" pos="0.0065 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+          <geom name="Seg1_geom_Al" size="0.0004 0.0061" pos="0.013 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+          <body name="Seg2_Al">
+            <joint name="hinge2_Al" pos="0.0195 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+            <geom name="Seg2_geom_Al" size="0.0004 0.0061" pos="0.026 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+            <body name="Seg3_Al">
+              <joint name="hinge3_Al" pos="0.0325 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+              <geom name="Seg3_geom_Al" size="0.0004 0.0061" pos="0.039 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+              <body name="Seg4_Al">
+                <joint name="hinge4_Al" pos="0.0455 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                <geom name="Seg4_geom_Al" size="0.0004 0.0061" pos="0.052 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                <body name="Seg5_Al">
+                  <joint name="hinge5_Al" pos="0.0585 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                  <geom name="Seg5_geom_Al" size="0.0004 0.0061" pos="0.065 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                  <body name="Seg6_Al">
+                    <joint name="hinge6_Al" pos="0.0715 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                    <geom name="Seg6_geom_Al" size="0.0004 0.0061" pos="0.078 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                    <body name="Seg7_Al">
+                      <joint name="hinge7_Al" pos="0.0845 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                      <geom name="Seg7_geom_Al" size="0.0004 0.0061" pos="0.091 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                      <body name="Seg8_Al">
+                        <joint name="hinge8_Al" pos="0.0975 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                        <geom name="Seg8_geom_Al" size="0.0004 0.0061" pos="0.104 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                        <body name="Seg9_Al">
+                          <joint name="hinge9_Al" pos="0.1105 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                          <geom name="Seg9_geom_Al" size="0.0004 0.0061" pos="0.117 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                          <body name="Seg10_Al">
+                            <joint name="hinge10_Al" pos="0.1235 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                            <geom name="Seg10_geom_Al" size="0.0004 0.0061" pos="0.13 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                            <body name="Seg11_Al">
+                              <joint name="hinge11_Al" pos="0.1365 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                              <geom name="Seg11_geom_Al" size="0.0004 0.0061" pos="0.143 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                              <body name="Seg12_Al">
+                                <joint name="hinge12_Al" pos="0.1495 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                                <geom name="Seg12_geom_Al" size="0.0004 0.0061" pos="0.156 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                                <body name="Seg13_Al">
+                                  <joint name="hinge13_Al" pos="0.1625 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                                  <geom name="Seg13_geom_Al" size="0.0004 0.0061" pos="0.169 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                                  <body name="Seg14_Al">
+                                    <joint name="hinge14_Al" pos="0.1755 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                                    <geom name="Seg14_geom_Al" size="0.0004 0.0061" pos="0.182 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                                    <body name="Seg15_Al">
+                        
+                                      <joint name="hinge15_Al" pos="0.1885 0 0" axis="0 0 1" stiffness="0.1015" range="-1.5708 1.5708" damping="0.004"/>
+                                      <geom name="Seg15_geom_Al" size="0.0004 0.0061" pos="0.195 0 0" quat="-0.707107 0 0.707107 0" type="capsule" mass="1.8e-05" rgba="0.8 0.2 0.1 1"/>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    
+    <body name="Composit_whisker_body_Nylon6/6" pos="0.0017 0 0.3">
+      <!-- <site name="conti_whis_base_site_Nylon6/6" pos="0.0183 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.01" type="capsule" rgba="0 1 1 0.4"/>-->
+      <body name="CompositeNylonB_first">
+        <geom name="CompositeNylonG0" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+        <site name="CompositeNylonS_first" pos="0 0 0" group="3"/>
+        <plugin instance="compositeCompositeNylon"/>
+        <body name="CompositeNylonB_1" pos="0.01 0 0">
+          <site name="conti_whis_base_site_Nylon6/6" pos="0.0 0 0" size="0.01 0.01" type="capsule" rgba="0 1 1 0.4" quat="0.707107 0 0.707107 0"/>
+          <joint name="CompositeNylonJ_1" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+          <geom name="CompositeNylonG1" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+          <plugin instance="compositeCompositeNylon"/>
+          <body name="CompositeNylonB_2" pos="0.01 0 0">
+            <joint name="CompositeNylonJ_2" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+            <geom name="CompositeNylonG2" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+            <plugin instance="compositeCompositeNylon"/>
+            <body name="CompositeNylonB_3" pos="0.01 0 0">
+              <joint name="CompositeNylonJ_3" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/> 
+              
+              <geom name="CompositeNylonG3" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+              <plugin instance="compositeCompositeNylon"/>
+              <body name="CompositeNylonB_4" pos="0.01 0 0">
+                <joint name="CompositeNylonJ_4" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                <geom name="CompositeNylonG4" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                <plugin instance="compositeCompositeNylon"/>
+                <body name="CompositeNylonB_5" pos="0.01 0 0">
+                  <joint name="CompositeNylonJ_5" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                  <geom name="CompositeNylonG5" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                  <plugin instance="compositeCompositeNylon"/>
+                  <body name="CompositeNylonB_6" pos="0.01 0 0">
+                    <joint name="CompositeNylonJ_6" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                    <geom name="CompositeNylonG6" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                    <plugin instance="compositeCompositeNylon"/>
+                    <body name="CompositeNylonB_7" pos="0.01 0 0">
+                      <joint name="CompositeNylonJ_7" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                      <geom name="CompositeNylonG7" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                      <plugin instance="compositeCompositeNylon"/>
+                      <body name="CompositeNylonB_8" pos="0.01 0 0">
+                        <joint name="CompositeNylonJ_8" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                        <geom name="CompositeNylonG8" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                        <plugin instance="compositeCompositeNylon"/>
+                        <body name="CompositeNylonB_9" pos="0.01 0 0">
+                          <joint name="CompositeNylonJ_9" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                          <geom name="CompositeNylonG9" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                          <plugin instance="compositeCompositeNylon"/>
+                          <body name="CompositeNylonB_10" pos="0.01 0 0">
+                            <joint name="CompositeNylonJ_10" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                            <geom name="CompositeNylonG10" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                            <plugin instance="compositeCompositeNylon"/>
+                            <body name="CompositeNylonB_11" pos="0.01 0 0">
+                              <joint name="CompositeNylonJ_11" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                              <geom name="CompositeNylonG11" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                              <plugin instance="compositeCompositeNylon"/>
+                              <body name="CompositeNylonB_12" pos="0.01 0 0">
+                                <joint name="CompositeNylonJ_12" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                <geom name="CompositeNylonG12" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                                <plugin instance="compositeCompositeNylon"/>
+                                <body name="CompositeNylonB_13" pos="0.01 0 0">
+                                  <joint name="CompositeNylonJ_13" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                  <geom name="CompositeNylonG13" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                                  <plugin instance="compositeCompositeNylon"/>
+                                  <body name="CompositeNylonB_14" pos="0.01 0 0">
+                                    <joint name="CompositeNylonJ_14" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                    <geom name="CompositeNylonG14" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                                    <plugin instance="compositeCompositeNylon"/>
+                                    <body name="CompositeNylonB_15" pos="0.01 0 0">
+                                      <joint name="CompositeNylonJ_15" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                      <geom name="CompositeNylonG15" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                                      <plugin instance="compositeCompositeNylon"/>
+                                      <body name="CompositeNylonB_16" pos="0.00999999 0 0">
+                                        <joint name="CompositeNylonJ_16" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                        <geom name="CompositeNylonG16" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                                        <plugin instance="compositeCompositeNylon"/>
+                                        <body name="CompositeNylonB_17" pos="0.01 0 0">
+                                          <joint name="CompositeNylonJ_17" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                          <geom name="CompositeNylonG17" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                                          <plugin instance="compositeCompositeNylon"/>
+                                          <body name="CompositeNylonB_18" pos="0.01 0 0">
+                                            <joint name="CompositeNylonJ_18" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                            <geom name="CompositeNylonG18" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                                            <plugin instance="compositeCompositeNylon"/>
+                                            <body name="CompositeNylonB_last" pos="0.00999999 0 0">
+                                              <joint name="CompositeNylonJ_last" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                              <geom name="CompositeNylonG19" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="0.0001" rgba="0 0 1 1"/>
+                                              <site name="CompositeNylonS_last" pos="0.01 0 0" group="3"/>
+                                              <plugin instance="compositeCompositeNylon"/>
+                                            </body>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="Composit_whisker_body_Al" pos="0.0004 0 0.4">
+      <body name="Composite_AluminiumB_first">
+        <geom name="Composite_AluminiumG0" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+        <site name="Composite_AluminiumS_first" pos="0 0 0" group="3"/>
+        <plugin instance="compositeComposite_Aluminium"/>
+        <body name="Composite_AluminiumB_1" pos="0.01 0 0">
+          <site name="conti_whis_base_site_Al" pos="0.0 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.01" type="capsule" rgba="0 1 1 0.4"/>
+          <joint name="Composite_AluminiumJ_1" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+          <geom name="Composite_AluminiumG1" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+          <plugin instance="compositeComposite_Aluminium"/>
+          <body name="Composite_AluminiumB_2" pos="0.01 0 0">
+            <joint name="Composite_AluminiumJ_2" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+            <geom name="Composite_AluminiumG2" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+            <plugin instance="compositeComposite_Aluminium"/>
+            <body name="Composite_AluminiumB_3" pos="0.01 0 0">
+              <joint name="Composite_AluminiumJ_3" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+              <geom name="Composite_AluminiumG3" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+              <plugin instance="compositeComposite_Aluminium"/>
+              <body name="Composite_AluminiumB_4" pos="0.01 0 0">
+                <joint name="Composite_AluminiumJ_4" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                <geom name="Composite_AluminiumG4" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                <plugin instance="compositeComposite_Aluminium"/>
+                <body name="Composite_AluminiumB_5" pos="0.01 0 0">
+                  <joint name="Composite_AluminiumJ_5" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                  <geom name="Composite_AluminiumG5" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                  <plugin instance="compositeComposite_Aluminium"/>
+                  <body name="Composite_AluminiumB_6" pos="0.01 0 0">
+                    <joint name="Composite_AluminiumJ_6" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                    <geom name="Composite_AluminiumG6" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                    <plugin instance="compositeComposite_Aluminium"/>
+                    <body name="Composite_AluminiumB_7" pos="0.01 0 0">
+                      <joint name="Composite_AluminiumJ_7" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                      <geom name="Composite_AluminiumG7" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                      <plugin instance="compositeComposite_Aluminium"/>
+                      <body name="Composite_AluminiumB_8" pos="0.01 0 0">
+                        <joint name="Composite_AluminiumJ_8" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                        <geom name="Composite_AluminiumG8" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                        <plugin instance="compositeComposite_Aluminium"/>
+                        <body name="Composite_AluminiumB_9" pos="0.01 0 0">
+                          <joint name="Composite_AluminiumJ_9" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                          <geom name="Composite_AluminiumG9" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                          <plugin instance="compositeComposite_Aluminium"/>
+                          <body name="Composite_AluminiumB_10" pos="0.01 0 0">
+                            <joint name="Composite_AluminiumJ_10" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                            <geom name="Composite_AluminiumG10" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                            <plugin instance="compositeComposite_Aluminium"/>
+                            <body name="Composite_AluminiumB_11" pos="0.01 0 0">
+                              <joint name="Composite_AluminiumJ_11" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                              <geom name="Composite_AluminiumG11" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                              <plugin instance="compositeComposite_Aluminium"/>
+                              <body name="Composite_AluminiumB_12" pos="0.01 0 0">
+                                <joint name="Composite_AluminiumJ_12" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                                <geom name="Composite_AluminiumG12" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                                <plugin instance="compositeComposite_Aluminium"/>
+                                <body name="Composite_AluminiumB_13" pos="0.01 0 0">
+                                  <joint name="Composite_AluminiumJ_13" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                                  <geom name="Composite_AluminiumG13" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                                  <plugin instance="compositeComposite_Aluminium"/>
+                                  <body name="Composite_AluminiumB_14" pos="0.01 0 0">
+                                    <joint name="Composite_AluminiumJ_14" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                                    <geom name="Composite_AluminiumG14" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                                    <plugin instance="compositeComposite_Aluminium"/>
+                                    <body name="Composite_AluminiumB_15" pos="0.01 0 0">
+                                      <joint name="Composite_AluminiumJ_15" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                                      <geom name="Composite_AluminiumG15" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                                      <plugin instance="compositeComposite_Aluminium"/>
+                                      <body name="Composite_AluminiumB_16" pos="0.00999999 0 0">
+                                        <joint name="Composite_AluminiumJ_16" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                                        <geom name="Composite_AluminiumG16" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                                        <plugin instance="compositeComposite_Aluminium"/>
+                                        <body name="Composite_AluminiumB_17" pos="0.01 0 0">
+                                          <joint name="Composite_AluminiumJ_17" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                                          <geom name="Composite_AluminiumG17" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                                          <plugin instance="compositeComposite_Aluminium"/>
+                                          <body name="Composite_AluminiumB_18" pos="0.01 0 0">
+                                            <joint name="Composite_AluminiumJ_18" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                                            <geom name="Composite_AluminiumG18" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                                            <plugin instance="compositeComposite_Aluminium"/>
+                                            <body name="Composite_AluminiumB_last" pos="0.00999999 0 0">
+                                              <joint name="Composite_AluminiumJ_last" pos="0 0 0" type="ball" group="3" stiffness="0.134" actuatorfrclimited="false" damping="0.004"/>
+                                              <geom name="Composite_AluminiumG19" size="0.0004 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0" mass="1.5e-05" rgba="0 0 1 1"/>
+                                              <site name="Composite_AluminiumS_last" pos="0.01 0 0" group="3"/>
+                                              <plugin instance="compositeComposite_Aluminium"/>
+                                            </body>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <contact>
+    <exclude body1="CompositeNylonB_first" body2="CompositeNylonB_1"/>
+    <exclude body1="CompositeNylonB_1" body2="CompositeNylonB_2"/>
+    <exclude body1="CompositeNylonB_2" body2="CompositeNylonB_3"/>
+    <exclude body1="CompositeNylonB_3" body2="CompositeNylonB_4"/>
+    <exclude body1="CompositeNylonB_4" body2="CompositeNylonB_5"/>
+    <exclude body1="CompositeNylonB_5" body2="CompositeNylonB_6"/>
+    <exclude body1="CompositeNylonB_6" body2="CompositeNylonB_7"/>
+    <exclude body1="CompositeNylonB_7" body2="CompositeNylonB_8"/>
+    <exclude body1="CompositeNylonB_8" body2="CompositeNylonB_9"/>
+    <exclude body1="CompositeNylonB_9" body2="CompositeNylonB_10"/>
+    <exclude body1="CompositeNylonB_10" body2="CompositeNylonB_11"/>
+    <exclude body1="CompositeNylonB_11" body2="CompositeNylonB_12"/>
+    <exclude body1="CompositeNylonB_12" body2="CompositeNylonB_13"/>
+    <exclude body1="CompositeNylonB_13" body2="CompositeNylonB_14"/>
+    <exclude body1="CompositeNylonB_14" body2="CompositeNylonB_15"/>
+    <exclude body1="CompositeNylonB_15" body2="CompositeNylonB_16"/>
+    <exclude body1="CompositeNylonB_16" body2="CompositeNylonB_17"/>
+    <exclude body1="CompositeNylonB_17" body2="CompositeNylonB_18"/>
+    <exclude body1="CompositeNylonB_18" body2="CompositeNylonB_last"/>
+    <exclude body1="Composite_AluminiumB_first" body2="Composite_AluminiumB_1"/>
+    <exclude body1="Composite_AluminiumB_1" body2="Composite_AluminiumB_2"/>
+    <exclude body1="Composite_AluminiumB_2" body2="Composite_AluminiumB_3"/>
+    <exclude body1="Composite_AluminiumB_3" body2="Composite_AluminiumB_4"/>
+    <exclude body1="Composite_AluminiumB_4" body2="Composite_AluminiumB_5"/>
+    <exclude body1="Composite_AluminiumB_5" body2="Composite_AluminiumB_6"/>
+    <exclude body1="Composite_AluminiumB_6" body2="Composite_AluminiumB_7"/>
+    <exclude body1="Composite_AluminiumB_7" body2="Composite_AluminiumB_8"/>
+    <exclude body1="Composite_AluminiumB_8" body2="Composite_AluminiumB_9"/>
+    <exclude body1="Composite_AluminiumB_9" body2="Composite_AluminiumB_10"/>
+    <exclude body1="Composite_AluminiumB_10" body2="Composite_AluminiumB_11"/>
+    <exclude body1="Composite_AluminiumB_11" body2="Composite_AluminiumB_12"/>
+    <exclude body1="Composite_AluminiumB_12" body2="Composite_AluminiumB_13"/>
+    <exclude body1="Composite_AluminiumB_13" body2="Composite_AluminiumB_14"/>
+    <exclude body1="Composite_AluminiumB_14" body2="Composite_AluminiumB_15"/>
+    <exclude body1="Composite_AluminiumB_15" body2="Composite_AluminiumB_16"/>
+    <exclude body1="Composite_AluminiumB_16" body2="Composite_AluminiumB_17"/>
+    <exclude body1="Composite_AluminiumB_17" body2="Composite_AluminiumB_18"/>
+    <exclude body1="Composite_AluminiumB_18" body2="Composite_AluminiumB_last"/>
+  </contact>
+
+  <sensor>
+    <force site="segmented_whis_base_site_nylon" name="manual_base_force_sensor_nylon"/>
+    <torque site="segmented_whis_base_site_nylon" name="manual_base_torque_sensor_nylon"/>
+    <force site="segmented_whis_base_site_Al" name="manual_base_force_sensor_Al"/>
+    <torque site="segmented_whis_base_site_Al" name="manual_base_torque_sensor_Al"/>
+    <force site="conti_whis_base_site_Nylon6/6" name="base_force_sensor_composite_nylon"/>
+    <torque site="conti_whis_base_site_Nylon6/6" name="base_torque_sensor_composite_nylon"/>
+    <force site="conti_whis_base_site_Al" name="base_force_sensor_composite_Al"/>
+    <torque site="conti_whis_base_site_Al" name="base_torque_sensor_composite_Al"/>
+  </sensor>
+</mujoco>

@@ -1,0 +1,179 @@
+<mujoco model="Whisker">
+  <compiler angle="radian"/>
+
+  <option timestep="0.0002" gravity="0 0 0"/>
+
+  <visual>
+    <global elevation="0"/>
+  </visual>
+
+  <statistic extent="1" center="0 0 0.2"/>
+
+  <default>
+    <geom solref="0.0002 0.009" solimp="0.95 0.99 0.0001" margin="0.0015"/>
+  </default>
+
+  <extension>
+    <plugin plugin="mujoco.elasticity.cable">
+      <instance name="compositeCompositeNylon">
+        <config key="twist" value="1e10"/>
+        <config key="bend" value="3.1e9"/>
+        <config key="vmax" value="0.1"/>
+      </instance>
+    </plugin>
+  </extension>
+
+  <custom>
+    <text name="composite_CompositeNylon" data="rope_CompositeNylon"/>
+  </custom>
+
+  <asset>
+    <texture type="2d" name="texplane" builtin="checker" mark="cross" rgb1="0.2 0.3 0.4" rgb2="0.1 0.15 0.2" markrgb="0.8 0.8 0.8" width="512" height="512"/>
+    <material name="matplane" texture="texplane" texuniform="true" texrepeat="10 10" reflectance="0.3"/>
+  </asset>
+
+  <worldbody>
+    <geom name="ground" size="0 0 1" type="plane" condim="1" />
+   <!-- <geom name = "pillar" type = "cylinder" size="0.1 0.4" rgba=".8 .9 .1 1" pos="0.2 0.1 0.4" contype="2" mass="1000000"/>-->
+    <geom name="wall" size="0.01 0.15 0.5" pos="0.1 0.1 0.4" type="box" contype="2" mass="1000000" rgba="0.8 1.2 0.1 1"/>
+    <light pos="0 0 2" dir="0 0 -1" castshadow="false" diffuse="0.4 0.4 0.4" specular="0.1 0.1 0.1"/>
+    <light pos="0 0 4" dir="0 0 -1" directional="true" diffuse="0.8 0.8 0.8" specular="0.2 0.2 0.2"/>
+    <body name="Composit_whisker_body_Nylon6/6" pos="0 -0.1 0.4">
+      <joint name="slidey" pos="0 0 0" axis="0 1 0" type="slide" range="-1 1" damping="100"/>
+   
+      <body name="CompositeNylonB_first">
+        <geom name="CompositeNylonG0" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2" contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+        <site name="CompositeNylonS_first" pos="0 0 0" group="3"/>
+        <plugin instance="compositeCompositeNylon"/>
+        <body name="CompositeNylonB_1" pos="0.01 0 0">
+          <site name="conti_whis_base_site_Nylon6/6" pos="0.0 0 0" size="0.01 0.01" type="capsule" rgba="0 1 1 0.4" quat="0.707107 0 0.707107 0"/>
+          <joint name="CompositeNylonJ_1" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+          <geom name="CompositeNylonG1" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+          <plugin instance="compositeCompositeNylon"/>
+          <body name="CompositeNylonB_2" pos="0.01 0 0">
+            <joint name="CompositeNylonJ_2" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+            <geom name="CompositeNylonG2" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"   contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+            <plugin instance="compositeCompositeNylon"/>
+            <body name="CompositeNylonB_3" pos="0.01 0 0">
+              <joint name="CompositeNylonJ_3" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+              <geom name="CompositeNylonG3" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+              <plugin instance="compositeCompositeNylon"/>
+              <body name="CompositeNylonB_4" pos="0.01 0 0">
+                <joint name="CompositeNylonJ_4" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                <geom name="CompositeNylonG4" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"   contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                <plugin instance="compositeCompositeNylon"/>
+                <body name="CompositeNylonB_5" pos="0.01 0 0">
+                  <joint name="CompositeNylonJ_5" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                  <geom name="CompositeNylonG5" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                  <plugin instance="compositeCompositeNylon"/>
+                  <body name="CompositeNylonB_6" pos="0.01 0 0">
+                    <joint name="CompositeNylonJ_6" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                    <geom name="CompositeNylonG6" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                    <plugin instance="compositeCompositeNylon"/>
+                    <body name="CompositeNylonB_7" pos="0.01 0 0">
+                      <joint name="CompositeNylonJ_7" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                      <geom name="CompositeNylonG7" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                      <plugin instance="compositeCompositeNylon"/>
+                      <body name="CompositeNylonB_8" pos="0.01 0 0">
+                        <joint name="CompositeNylonJ_8" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                        <geom name="CompositeNylonG8" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                        <plugin instance="compositeCompositeNylon"/>
+                        <body name="CompositeNylonB_9" pos="0.01 0 0">
+                          <joint name="CompositeNylonJ_9" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                          <geom name="CompositeNylonG9" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                          <plugin instance="compositeCompositeNylon"/>
+                          <body name="CompositeNylonB_10" pos="0.01 0 0">
+                            <joint name="CompositeNylonJ_10" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                            <geom name="CompositeNylonG10" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                            <plugin instance="compositeCompositeNylon"/>
+                            <body name="CompositeNylonB_11" pos="0.01 0 0">
+                              <joint name="CompositeNylonJ_11" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                              <geom name="CompositeNylonG11" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                              <plugin instance="compositeCompositeNylon"/>
+                              <body name="CompositeNylonB_12" pos="0.01 0 0">
+                                <joint name="CompositeNylonJ_12" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                <geom name="CompositeNylonG12" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                                <plugin instance="compositeCompositeNylon"/>
+                                <body name="CompositeNylonB_13" pos="0.01 0 0">
+                                  <joint name="CompositeNylonJ_13" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                  <geom name="CompositeNylonG13" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                                  <plugin instance="compositeCompositeNylon"/>
+                                  <body name="CompositeNylonB_14" pos="0.01 0 0">
+                                    <joint name="CompositeNylonJ_14" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                    <geom name="CompositeNylonG14" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2"  friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                                    <plugin instance="compositeCompositeNylon"/>
+                                    <body name="CompositeNylonB_15" pos="0.01 0 0">
+                                      <joint name="CompositeNylonJ_15" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                      <geom name="CompositeNylonG15" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                                      <plugin instance="compositeCompositeNylon"/>
+                                      <body name="CompositeNylonB_16" pos="0.00999999 0 0">
+                                        <joint name="CompositeNylonJ_16" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                        <geom name="CompositeNylonG16" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                                        <plugin instance="compositeCompositeNylon"/>
+                                        <body name="CompositeNylonB_17" pos="0.01 0 0">
+                                          <joint name="CompositeNylonJ_17" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                          <geom name="CompositeNylonG17" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"   contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                                          <plugin instance="compositeCompositeNylon"/>
+                                          <body name="CompositeNylonB_18" pos="0.01 0 0">
+                                            <joint name="CompositeNylonJ_18" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                            <geom name="CompositeNylonG18" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                                            <plugin instance="compositeCompositeNylon"/>
+                                            <body name="CompositeNylonB_last" pos="0.00999999 0 0">
+                                              <joint name="CompositeNylonJ_last" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                              <geom name="CompositeNylonG19" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" conaffinity="2"  contype="2" friction="1 0.1 0.1" solref="0.02 1" solimp="0.9 0.95 0.001" margin="0.015" mass="0.0001" rgba="0 0 1 1"/>
+                                              <site name="CompositeNylonS_last" pos="0.01 0 0" group="3"/>
+                                              <plugin instance="compositeCompositeNylon"/>
+                                            </body>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <contact>
+    <exclude body1="CompositeNylonB_first" body2="CompositeNylonB_1"/>
+    <exclude body1="CompositeNylonB_1" body2="CompositeNylonB_2"/>
+    <exclude body1="CompositeNylonB_2" body2="CompositeNylonB_3"/>
+    <exclude body1="CompositeNylonB_3" body2="CompositeNylonB_4"/>
+    <exclude body1="CompositeNylonB_4" body2="CompositeNylonB_5"/>
+    <exclude body1="CompositeNylonB_5" body2="CompositeNylonB_6"/>
+    <exclude body1="CompositeNylonB_6" body2="CompositeNylonB_7"/>
+    <exclude body1="CompositeNylonB_7" body2="CompositeNylonB_8"/>
+    <exclude body1="CompositeNylonB_8" body2="CompositeNylonB_9"/>
+    <exclude body1="CompositeNylonB_9" body2="CompositeNylonB_10"/>
+    <exclude body1="CompositeNylonB_10" body2="CompositeNylonB_11"/>
+    <exclude body1="CompositeNylonB_11" body2="CompositeNylonB_12"/>
+    <exclude body1="CompositeNylonB_12" body2="CompositeNylonB_13"/>
+    <exclude body1="CompositeNylonB_13" body2="CompositeNylonB_14"/>
+    <exclude body1="CompositeNylonB_14" body2="CompositeNylonB_15"/>
+    <exclude body1="CompositeNylonB_15" body2="CompositeNylonB_16"/>
+    <exclude body1="CompositeNylonB_16" body2="CompositeNylonB_17"/>
+    <exclude body1="CompositeNylonB_17" body2="CompositeNylonB_18"/>
+    <exclude body1="CompositeNylonB_18" body2="CompositeNylonB_last"/>
+  </contact>
+
+  <actuator>
+    <general name="move_y" joint="slidey" ctrlrange="-20 20" biastype="affine" biasprm="0 0 -1"/>
+  </actuator>
+
+  <sensor>
+    <force site="conti_whis_base_site_Nylon6/6" name="base_force_sensor"/>
+    <torque site="conti_whis_base_site_Nylon6/6" name="base_torque_sensor"/>
+  </sensor>
+</mujoco>

@@ -1,0 +1,6 @@
+
+Bhounsule P.A. 2022. Template MuJoCo Python. Windows Installing mujoco python: 
+Install python/ Atom (editor) / mujoco python. GitHub. [Online] Available Online: 
+https://github.com/pab47/pab47.github.io/blob/master/mujoco/python/template_mujoco_pyth
+ on.zip 
+ 

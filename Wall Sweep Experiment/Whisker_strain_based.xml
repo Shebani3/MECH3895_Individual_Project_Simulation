@@ -1,0 +1,458 @@
+<mujoco model="Whisker_strain_based">
+  <compiler angle="radian" meshdir="asset/" texturedir="asset/"/>
+
+  <option timestep="0.0002" gravity="0 0 0"/>
+ 
+  <visual>
+    <global elevation="0"/>
+    <map stiffness="700" fogstart="1" fogend="15" zfar="40" haze="1" shadowscale="0.5"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+  </visual>
+
+  <statistic meansize="0.05" extent="1" center="0 0 0.2"/>
+
+  <default>
+    <geom solref="0.00002" solimp="0.95 0.99 0.0001" margin="0.0015"/>
+  </default>
+
+  <extension>
+    <plugin plugin="mujoco.elasticity.cable">
+      <instance name="compositeSegCom">
+        <config key="twist" value="1e10"/>
+        <config key="bend" value="3.1e9"/>
+        <config key="vmax" value="0.1"/>
+      </instance>
+    </plugin>
+  </extension>
+
+  <custom>
+    <text name="composite_SegCom" data="rope_SegCom"/>
+  </custom>
+
+
+  <worldbody>
+     
+    <light diffuse=".4 .2 .4" specular="0.2 0.1 0.1" pos="0 0 2.0" dir="0 0 -1" castshadow="false"/>
+    <light directional="true" diffuse=".8 .8 .8" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
+   <geom name="ground" size="0 0 1" type="plane" condim="1" pos="0 0 0" quat="1 0 0 0" rgba = "0.1 0.2 0.2 1"/>
+
+    <body name="WhiskerBody" pos="0 0 0.2">
+
+      <joint name="slideys" type="slide" axis="0 1 0" damping="100" range="-1 1"/>
+      <joint name="slidexs" type="slide" axis="1 0 0" damping="100" range="-1 1"/>
+       <joint name="base_rotations" type="hinge" axis="0 0 1" pos="0 0 0"/>
+       
+
+      <site name = "sitestartLS" type = "sphere" size="0.003" pos = "0 -0.0 0"></site>
+      <site name = "sitestartRS" type = "sphere" size="0.003" pos = "0 +0.0 0."></site>
+
+      <geom name="shoulderS" type="cylinder" pos="0.025 0 0" size=".01 .005" rgba=".5 .1 .8 .5" mass="0" group="1"/>
+      <site name = "sidesiteRS" type = "sphere" size="0.001" pos = "0.025 +0.02 0"></site>
+      <site name = "sidesiteLS" type = "sphere" size="0.001" pos = "0.025 -0.02 0"></site>
+
+      <body name="Seg0">
+        <!--<joint name="hinge0" pos="-0.005 0 0" axis="0 0 1" stiffness="0.888" range="0 0.00174533" damping="0.03"/>-->
+        <geom name="Seg0_geom" size="0.0015 0.005" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+       
+        <body name="Seg1">
+          <joint name="hinge1" pos="0.0065 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+          <geom name="Seg1_geom" size="0.0015 0.005" pos="0.013 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+          <body name="Seg2">
+            <joint name="hinge2" pos="0.0195 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+            <geom name="Seg2_geom" size="0.0015 0.005" pos="0.026 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+            
+            <body name="Seg3">
+              <joint name="hinge3" pos="0.0325 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+              <geom name="Seg3_geom" size="0.0015 0.005" pos="0.039 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+              <!--<site name = "siteendS" type = "sphere" size="0.003" pos = "0.0325 0 0."></site>-->
+              <site name = "siteendS" type = "sphere" size="0.003" pos = "0.05 0 0."></site>
+              <body name="Seg4">
+                <joint name="hinge4" pos="0.0455 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                <geom name="Seg4_geom" size="0.0015 0.005" pos="0.052 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                <body name="Seg5">
+                  <joint name="hinge5" pos="0.0585 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                  <geom name="Seg5_geom" size="0.0015 0.005" pos="0.065 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                 
+                  <body name="Seg6">
+                    <joint name="hinge6" pos="0.0715 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                    <geom name="Seg6_geom" size="0.0015 0.005" pos="0.078 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                    <body name="Seg7">
+                      <joint name="hinge7" pos="0.0845 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                      <geom name="Seg7_geom" size="0.0015 0.005" pos="0.091 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                      <body name="Seg8">
+                        <joint name="hinge8" pos="0.0975 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                        <geom name="Seg8_geom" size="0.0015 0.005" pos="0.104 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                        <body name="Seg9">
+                          <joint name="hinge9" pos="0.1105 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                          <geom name="Seg9_geom" size="0.0015 0.005" pos="0.117 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                          <body name="Seg10">
+                            <joint name="hinge10" pos="0.1235 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                            <geom name="Seg10_geom" size="0.0015 0.005" pos="0.13 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                            <body name="Seg11">
+                              <joint name="hinge11" pos="0.1365 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                              <geom name="Seg11_geom" size="0.0015 0.005" pos="0.143 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                              <body name="Seg12">
+                                <joint name="hinge12" pos="0.1495 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                <geom name="Seg12_geom" size="0.0015 0.005" pos="0.156 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                <body name="Seg13">
+                                  <joint name="hinge13" pos="0.1625 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                  <geom name="Seg13_geom" size="0.0015 0.005" pos="0.169 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                  <body name="Seg14">
+                                    <joint name="hinge14" pos="0.1755 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                    <geom name="Seg14_geom" size="0.0015 0.005" pos="0.182 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                    <body name="Seg15">
+                                      <joint name="hinge15" pos="0.1885 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                      <geom name="Seg15_geom" size="0.0015 0.005" pos="0.195 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+
+
+
+
+    <body name="WhiskerBody_Seg_nylon" pos="0 0 0.1">
+
+      <joint name="slideysn" type="slide" axis="0 1 0" damping="100" range="-1 1"/>
+     <!-- <joint name="slidexsn" type="slide" axis="1 0 0" damping="100" range="-1 1"/>
+       <joint name="base_rotationsn" type="hinge" axis="0 0 1" pos="0 0 0"/>-->
+  
+
+      <body name="Seg0n">
+        <!--<joint name="hinge0" pos="-0.005 0 0" axis="0 0 1" stiffness="0.888" range="0 0.00174533" damping="0.03"/>-->
+        <geom name="Seg0_geomn" size="0.0015 0.005" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+        <site name="segmented_whis_base_site_nylon" pos="0.0135 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.01" type="capsule" rgba="0 1 1 0.4"/>
+        <body name="Seg1n">
+          <joint name="hinge1n" pos="0.0065 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+          <geom name="Seg1_geomn" size="0.0015 0.005" pos="0.013 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+          <body name="Seg2n">
+            <joint name="hinge2n" pos="0.0195 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+            <geom name="Seg2_geomn" size="0.0015 0.005" pos="0.026 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+            
+            <body name="Seg3n">
+              <joint name="hinge3n" pos="0.0325 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+              <geom name="Seg3_geomn" size="0.0015 0.005" pos="0.039 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+              <!--<site name = "siteendS" type = "sphere" size="0.003" pos = "0.0325 0 0."></site>-->
+              <site name = "siteendSn" type = "sphere" size="0.003" pos = "0.05 0 0."></site>
+              <body name="Seg4n">
+                <joint name="hinge4n" pos="0.0455 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                <geom name="Seg4_geomn" size="0.0015 0.005" pos="0.052 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                <body name="Seg5n">
+                  <joint name="hinge5n" pos="0.0585 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                  <geom name="Seg5_geomn" size="0.0015 0.005" pos="0.065 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                 
+                  <body name="Seg6n">
+                    <joint name="hinge6n" pos="0.0715 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                    <geom name="Seg6_geomn" size="0.0015 0.005" pos="0.078 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                    <body name="Seg7n">
+                      <joint name="hinge7n" pos="0.0845 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                      <geom name="Seg7_geomn" size="0.0015 0.005" pos="0.091 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                      <body name="Seg8n">
+                        <joint name="hinge8n" pos="0.0975 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                        <geom name="Seg8_geomn" size="0.0015 0.005" pos="0.104 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                        <body name="Seg9n">
+                          <joint name="hinge9n" pos="0.1105 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                          <geom name="Seg9_geomn" size="0.0015 0.005" pos="0.117 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                          <body name="Seg10n">
+                            <joint name="hinge10n" pos="0.1235 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                            <geom name="Seg10_geomn" size="0.0015 0.005" pos="0.13 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                            <body name="Seg11n">
+                              <joint name="hinge11n" pos="0.1365 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                              <geom name="Seg11_geomn" size="0.0015 0.005" pos="0.143 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                              <body name="Seg12n">
+                                <joint name="hinge12n" pos="0.1495 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                <geom name="Seg12_geomn" size="0.0015 0.005" pos="0.156 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                <body name="Seg13n">
+                                  <joint name="hinge13n" pos="0.1625 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                  <geom name="Seg13_geomn" size="0.0015 0.005" pos="0.169 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                  <body name="Seg14n">
+                                    <joint name="hinge14n" pos="0.1755 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                    <geom name="Seg14_geomn" size="0.0015 0.005" pos="0.182 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                    <body name="Seg15n">
+                                      <joint name="hinge15n" pos="0.1885 0 0" axis="0 0 1" stiffness="0.888" range="-1.5708 1.5708" damping="0.03"/>
+                                      <geom name="Seg15_geomn" size="0.0015 0.005" pos="0.195 0 0" quat="0.707107 0 0.707107 0" type="capsule" mass="0.0001" rgba="0.8 0.2 0.1 1"/>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+
+
+ 
+    
+    <body name="Composit_whisker_nylon6/6" pos="0.000 0 0.4">
+      <joint name="slideycn" type="slide" axis="0 1 0" damping="100" range="-1 1"/>
+  <!--  <joint name="slidex" type="slide" axis="1 0 0" damping="100" range="-1 1"/>
+    <joint name="base_rotation" type="hinge" axis="0 0 1" pos="0 0 0"/>-->
+    
+     <site name = "sitestartL" type = "sphere" size="0.003" pos = "0 -0.0 0" rgba = "0 0 0 1"></site>
+     <site name = "sitestartR" type = "sphere" size="0.003" pos = "0 +0.0 0." rgba = "0 0 0 0"></site>
+
+      <!-- <site name="conti_whis_base_site" pos="0.06 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.029" type="capsule" rgba="0 1 1 0.4"/>-->
+      <geom name="shoulder" type="cylinder" pos="0.025 0 0" size=".01 .005" rgba=".5 .1 .8 .5" mass="0" group="1"/>
+      <site name = "sidesiteR" type = "sphere" size="0.001" pos = "0.025 +0.02 0"></site>
+      <site name = "sidesiteL" type = "sphere" size="0.001" pos = "0.025 -0.02 0"></site>
+ <!-- <joint type = "hinge" axis = "0 0 1" range ="0 0.57" stiffness = "1"></joint>-->
+ 
+      <body name="SegComB_first">
+        <geom name="SegComG0" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+        <site name="SegComS_first" pos="0 0 0" group="3"/>
+        <plugin instance="compositeSegCom"/>
+        <body name="SegComB_1" pos="0.01 0 0">
+          <joint name="SegComJ_1" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+          <geom name="SegComG1" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+          <plugin instance="compositeSegCom"/>
+          <body name="SegComB_2" pos="0.01 0 0">
+            <joint name="SegComJ_2" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+            <geom name="SegComG2" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+            <plugin instance="compositeSegCom"/>
+            <body name="SegComB_3" pos="0.01 0 0">
+              <joint name="SegComJ_3" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+              <geom name="SegComG3" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+              <plugin instance="compositeSegCom"/>
+              <body name="SegComB_4" pos="0.01 0 0">
+                <joint name="SegComJ_4" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                <geom name="SegComG4" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                <plugin instance="compositeSegCom"/>
+                <body name="SegComB_5" pos="0.01 0 0">
+                  <joint name="SegComJ_5" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                  <geom name="SegComG5" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                 <site name = "siteend" type = "sphere" size="0.003" pos = "0.0 0 0."></site>
+                  <plugin instance="compositeSegCom"/>
+                  <body name="SegComB_6" pos="0.01 0 0">
+                    <joint name="SegComJ_6" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                    <geom name="SegComG6" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                    <plugin instance="compositeSegCom"/>
+                    <body name="SegComB_7" pos="0.01 0 0">
+                      <joint name="SegComJ_7" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                      <geom name="SegComG7" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                      <plugin instance="compositeSegCom"/>
+                      <body name="SegComB_8" pos="0.01 0 0">
+                        <joint name="SegComJ_8" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                        <geom name="SegComG8" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                        <plugin instance="compositeSegCom"/>
+                        <body name="SegComB_9" pos="0.01 0 0">
+                          <joint name="SegComJ_9" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                          <geom name="SegComG9" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                                                    <plugin instance="compositeSegCom"/>
+                          <body name="SegComB_10" pos="0.01 0 0">
+                            <joint name="SegComJ_10" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                            <geom name="SegComG10" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                            <plugin instance="compositeSegCom"/>
+                            <body name="SegComB_11" pos="0.01 0 0">
+                              <joint name="SegComJ_11" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                              <geom name="SegComG11" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                              <plugin instance="compositeSegCom"/>
+                              <body name="SegComB_12" pos="0.01 0 0">
+                                <joint name="SegComJ_12" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                <geom name="SegComG12" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                                <plugin instance="compositeSegCom"/>
+                                <body name="SegComB_13" pos="0.01 0 0">
+                                  <joint name="SegComJ_13" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                  <geom name="SegComG13" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                                  <plugin instance="compositeSegCom"/>
+                                  <body name="SegComB_14" pos="0.01 0 0">
+                                    <joint name="SegComJ_14" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                    <geom name="SegComG14" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                                    <plugin instance="compositeSegCom"/>
+                                    <body name="SegComB_15" pos="0.01 0 0">
+                                      <joint name="SegComJ_15" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                      <geom name="SegComG15" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                                      <plugin instance="compositeSegCom"/>
+                                      <body name="SegComB_16" pos="0.00999999 0 0">
+                                        <joint name="SegComJ_16" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                        <geom name="SegComG16" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                                        <plugin instance="compositeSegCom"/>
+                                        <body name="SegComB_17" pos="0.01 0 0">
+                                          <joint name="SegComJ_17" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                          <geom name="SegComG17" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                                          
+                                          <plugin instance="compositeSegCom"/>
+                                          <body name="SegComB_18" pos="0.01 0 0">
+                                            <joint name="SegComJ_18" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                            <geom name="SegComG18" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                                            <plugin instance="compositeSegCom"/>
+                                            <body name="SegComB_last" pos="0.00999999 0 0">
+                                              <joint name="SegComJ_last" pos="0 0 0" type="ball" group="3" stiffness="1.931" actuatorfrclimited="false" damping="0.04"/>
+                                              <geom name="SegComG19" size="0.0017 0.005" pos="0.005 0 0" quat="0.707107 0 -0.707107 0" type="capsule" friction="1 0.1 0.1" solref="0.02" solimp="0.9 0.95 0.001" mass="0.0001" margin="0.015" rgba="0 0 1 1"/>
+                                              <site name="SegComS_last" pos="0.01 0 0" group="3"/>
+                                              <plugin instance="compositeSegCom"/>
+                                            </body>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   pos="0.1 0.15 "
+    
+
+
+ <geom name = "wall" type = "box" size="0.01 0.15 0.5" rgba=".8 1.2 .1 1" pos="0.1 0.3 0.4" mass="1000" contype="2" conaffinity="1"/>
+<!---
+<geom name = "pillar" type = "cylinder" size="0.1 0.4" rgba=".8 .9 .1 1" pos="0.15 0.3 0.4" contype="2" mass="1000000"/>
+
+-->
+
+
+
+
+
+
+
+    <!--
+    <body name="sliderz" pos="0 0.12 0.5">
+    <joint name="slidex" type="slide" axis="1 0 0" damping="100" range="-1 1"/>
+    <joint name="slidey" type="slide" axis="0 1 0" damping="100" range="-1 1"/>
+    <joint name="slidez" type="slide" axis="0 0 1" damping="100" range="-1 1"/>
+
+    <geom name = "testbox" type = "box" size="0.05 0.05 0.1" rgba=".8 .9 .1 1" density= "100"/>
+    </body>-->
+    
+  </worldbody>
+
+  <contact>
+    <exclude body1="SegComB_first" body2="SegComB_1"/>
+    <exclude body1="SegComB_1" body2="SegComB_2"/>
+    <exclude body1="SegComB_2" body2="SegComB_3"/>
+    <exclude body1="SegComB_3" body2="SegComB_4"/>
+    <exclude body1="SegComB_4" body2="SegComB_5"/>
+    <exclude body1="SegComB_5" body2="SegComB_6"/>
+    <exclude body1="SegComB_6" body2="SegComB_7"/>
+    <exclude body1="SegComB_7" body2="SegComB_8"/>
+    <exclude body1="SegComB_8" body2="SegComB_9"/>
+    <exclude body1="SegComB_9" body2="SegComB_10"/>
+    <exclude body1="SegComB_10" body2="SegComB_11"/>
+    <exclude body1="SegComB_11" body2="SegComB_12"/>
+    <exclude body1="SegComB_12" body2="SegComB_13"/>
+    <exclude body1="SegComB_13" body2="SegComB_14"/>
+    <exclude body1="SegComB_14" body2="SegComB_15"/>
+    <exclude body1="SegComB_15" body2="SegComB_16"/>
+    <exclude body1="SegComB_16" body2="SegComB_17"/>
+    <exclude body1="SegComB_17" body2="SegComB_18"/>
+    <exclude body1="SegComB_18" body2="SegComB_last"/>
+  </contact>
+<!--
+  <actuator>
+    <position name="move_x" joint="slidex"  gear="1 0 0 0 0 0" ctrlrange="-.25 0.5" kp="1000" />
+    <position name="move_y" joint="slidey"  gear="1 0 0 0 0 0" ctrlrange="-.25 0.5" kp="1000" />
+    <position name="move_z" joint="slidez"  gear="1 0 0 0 0 0" ctrlrange="-.25 0.5" kp="1000" />
+  </actuator>-->
+    <tendon>
+    <spatial name="tendonL" width="0.001" limited="true" range="0 0.005" damping="1" stiffness="0.001">
+      <site site="sitestartL"/>
+      <geom geom="shoulder" sidesite = "sidesiteL"/>
+      <site site="siteend"/>
+    </spatial>
+
+   <spatial name="tendonR" width="0.001" limited="true" range="0 0.005" damping="1" stiffness = "0.001">
+      <site site="sitestartR"/>
+      <geom geom="shoulder" sidesite="sidesiteR"/>
+      <site site="siteend"/>
+    </spatial>
+
+      <spatial name="tendonRS" width="0.001" range="0 0.005"  damping="1" stiffness = "0">
+      <site site="sitestartRS"/>
+      <geom geom="shoulderS" sidesite="sidesiteRS"/>
+      <site site="siteendS"/></spatial>
+
+  <spatial name="tendonLS" width="0.001" range="0 0.005" damping="1" stiffness="0.">
+      <site site="sitestartLS"/>
+      <geom geom="shoulderS" sidesite = "sidesiteLS"/>
+      <site site="siteendS"/>
+    </spatial>
+    
+
+    
+    </tendon>
+  
+    <actuator>
+      <velocity name="move_ycn" joint="slideycn" gear="1 0 0 0 0 0"  ctrlrange="-20 20"/>
+      <!--<velocity name="move_x" joint="slidex" gear="1 0 0 0 0 0"  ctrlrange="-20 20"/>
+     <position joint="base_rotation" ctrlrange="-3.14 3.14"/>-->
+
+     <velocity name="move_ys" joint="slideys" gear="1 0 0 0 0 0"  ctrlrange="-20 20"/>
+     <!-- <velocity name="move_xs" joint="slidexs" gear="1 0 0 0 0 0"  ctrlrange="-20 20"/>
+     <position joint="base_rotations" ctrlrange="-3.14 3.14"/>-->
+
+     <velocity name="move_ysn" joint="slideysn" gear="1 0 0 0 0 0"  ctrlrange="-20 20"/>
+   <!--  <velocity name="move_xsn" joint="slidexsn" gear="1 0 0 0 0 0"  ctrlrange="-20 20"/>
+    <position joint="base_rotationsn" ctrlrange="-3.14 3.14"/>
+    -->
+    </actuator>  
+
+    
+  
+  <sensor>
+    <!--<force site="segmented_whis_base_site" name="manual_base_force_sensor"/>
+    <torque site="segmented_whis_base_site" name="manual_base_torque_sensor"/>
+    <force site="conti_whis_base_site" name="sensorpoint"/>
+    <torque site="conti_whis_base_site" name="sensorpoint"/>
+    <force site="sitestartL" name="sensorpoint"/>-->
+    <force site="segmented_whis_base_site_nylon" name="Segment_Nylon_force_sensor"/>
+    <torque site="segmented_whis_base_site_nylon" name="Segment_Nylon_torque_sensor"/>
+    
+    <tendonpos name="tendon_pos_sensorL" tendon="tendonL"/>
+    <tendonpos name="tendon_pos_sensorR" tendon="tendonR"/><!--not counting translationsla velocity-->
+    <tendonlimitfrc name ="t_l_frcL" tendon = "tendonL"></tendonlimitfrc>
+    <tendonlimitfrc name ="t_l_frcR" tendon = "tendonR"></tendonlimitfrc>
+
+    <tendonpos name="tendon_pos_sensorLS" tendon="tendonLS"/>
+    <tendonpos name="tendon_pos_sensorRS" tendon="tendonRS"/><!--not counting translationsla velocity-->
+    <tendonlimitfrc name ="t_l_frcLS" tendon = "tendonLS"></tendonlimitfrc>
+    <tendonlimitfrc name ="t_l_frcRS" tendon = "tendonRS"></tendonlimitfrc>
+  </sensor>
+</mujoco>

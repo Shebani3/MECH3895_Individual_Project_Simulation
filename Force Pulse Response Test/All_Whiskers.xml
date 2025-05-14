@@ -1,0 +1,97 @@
+
+<mujoco model="All_Whiskers">
+<option timestep = "0.0002"></option>
+
+<include file="WhiskerSegmented.xml"/>
+
+  <option gravity="0 0 0"/>
+  <extension>
+    <plugin plugin="mujoco.elasticity.cable"/>
+  </extension>
+
+  <statistic center="0 0 0.2" extent="1"/>
+
+  <compiler autolimits="true"/>
+
+  <visual>
+    <global elevation="0"/>
+  </visual>
+
+  <default>
+    <geom solref="0.0005 0.009" solimp=".95 .99 .0001" margin = "0.0003"/>
+  </default>
+
+  <worldbody>
+
+    <body name="Composit_whisker_body_Nylon6/6"  pos="0.0017 0.0 0.3" euler="0 0 0">
+    <site name="conti_whis_base_site_Nylon6/6" type="capsule" size="0.01 0.029" rgba="0 1 1 0.4" euler = "0 90 0" pos = "0.03 0.0 0"/>
+  
+   <composite prefix="SegCompositeNylon" type="cable" curve="s 0 0" count="21 1 1" size = "0.2"
+       offset="0 0 0" initial="none">
+  
+
+   <plugin plugin="mujoco.elasticity.cable">
+        
+        <config key="twist" value="1e10"/>
+       <config key="bend" value="3.1e9"/>
+        <config key="vmax" value="0.1"/>
+</plugin>
+
+  <joint kind="main" type="hinge" axis ="0 1 0" stiffness = "1.931" damping = "0.04" />
+    <site ></site>
+     
+      <geom type="capsule" size="0.0017" rgba=".1 .2 .1 1" mass="1e-4" friction="01 0.1 0.1"/> <!--properties similar to Nylon 6/6-->
+      
+    </composite>
+    
+    </body>
+
+
+
+
+
+    <body name="Composit_whisker_body_Al"  pos="0.0004 0.00 0.4" euler="0 0 0">
+      <site name="conti_whis_base_site_Al" type="capsule" size="0.01 0.029" rgba="0 1 1 0.4" euler = "0 90 0" pos = "0.03 0.0 0"/>
+    
+     <composite prefix="SegCom_Al" type="cable" curve="s 0 0" count="21 1 1" size = "0.2"
+         offset="0 0 0" initial="none">
+    
+  
+     <plugin plugin="mujoco.elasticity.cable">
+          
+          <config key="twist" value="1e10"/>
+         <config key="bend" value="70e9"/>
+          <config key="vmax" value="0.1"/>
+  </plugin>
+  
+    <joint kind="main" type="hinge" axis ="0 1 0" stiffness = "0.134" damping = "0.01" />
+      <site ></site>
+       
+        <geom type="capsule" size="0.0004" rgba=".1 .2 .1 1" mass="1.5e-5" friction="01 0.1 0.1"/> <!--properties similar to Aluminium-->
+        
+      </composite>
+      
+      </body>
+
+      <!-- <body name="sliderz" pos="0 0.09 0.5">
+        <joint name="slidex" pos="0 0 0" axis="1 0 0" type="slide" range="-1 1" damping="5"/>
+        <joint name="slidey" pos="0 0 0" axis="0 1 0" type="slide" range="-1 1" damping="5"/>
+        <joint name="slidez" pos="0 0 0" axis="0 0 1" type="slide" range="-1 1" damping="5"/>
+        <geom name="testbox" size="0.01 0.05 0.05" type="box" rgba="0.8 0.9 0.1 1" density = "100"/>
+      </body>-->
+
+  </worldbody>
+
+  <!--<actuator>
+    <general name="move_x" joint="slidex" ctrlrange="-0.25 0.5" biastype="affine" gainprm="100" biasprm="0 -100"/>
+    <general name="move_y" joint="slidey" ctrlrange="-0.25 0.5" biastype="affine" gainprm="100" biasprm="0 -100"/>
+    <general name="move_z" joint="slidez" ctrlrange="-0.25 0.5" biastype="affine" gainprm="100" biasprm="0 -100"/>
+  </actuator>-->
+
+<sensor> 
+  <force name="base_force_sensor" site="conti_whis_base_site_Nylon6/6" />
+  <torque name="base_torque_sensor" site="conti_whis_base_site_Nylon6/6"/>
+</sensor>
+
+
+</mujoco>

@@ -1,0 +1,14 @@
+
+<mujoco>
+
+  <compiler meshdir="asset" texturedir="asset"/>
+
+  <statistic meansize=".05"/>
+
+  
+  <worldbody>
+    <light diffuse=".4 .2 .4" specular="0.2 0.1 0.1" pos="0 0 2.0" dir="0 0 -1" castshadow="false"/>
+    <light directional="true" diffuse=".8 .8 .8" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1"/>
+    <geom name="ground" type="plane" size="0 0 1" pos="0 0 0" quat="1 0 0 0" condim="1"/>
+  </worldbody>
+</mujoco>
